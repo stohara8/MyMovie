@@ -19,13 +19,13 @@ public class ViewActivity extends AppCompatActivity {
         directorView = findViewById(R.id.directorView);
 
         DatabaseManager dbm = new DatabaseManager(this);
-        String[] entry = dbm.get();
+        Intent i = getIntent();
+        String title = i.getStringExtra("TITLE");
+        String[] entry = dbm.get(title);
         titleView.setText(entry[0]);
         directorView.setText(entry[1]);
 
     }
-
-
 
     public void onPause(){ super.onPause(); }
 

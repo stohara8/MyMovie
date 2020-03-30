@@ -5,6 +5,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
+
 public class DatabaseManager extends SQLiteOpenHelper {
 
     public DatabaseManager(Context context){
@@ -26,9 +28,22 @@ public class DatabaseManager extends SQLiteOpenHelper {
         db.close();
     }
 
-    public String[] get(){
+    public ArrayList<String> getTitles(){
+        ArrayList<String> list = new ArrayList<String>();
         SQLiteDatabase db = getWritableDatabase();
         String sql = "select * from MovieTable";
+        Cursor cursor = db.rawQuery(sql, null);
+        while(cursor.moveToNext()){
+            String title = cursor.getString(1);
+            list.add(title);
+        }
+        db.close();
+        return list;
+    }
+
+    public String[] get(String movieTitle){
+        SQLiteDatabase db = getWritableDatabase();
+        String sql = "select * from MovieTable where title = '"+movieTitle+"'";
         Cursor cursor = db.rawQuery(sql, null);
         String[] entry = new String[2];
         if (cursor.moveToFirst()){

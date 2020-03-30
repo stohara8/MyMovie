@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void viewPressed(View v){
-        Intent in = new Intent(this, ViewActivity.class);
+        Intent in = new Intent(this, TitleViewActivity.class);
         startActivity(in);
     }
 
