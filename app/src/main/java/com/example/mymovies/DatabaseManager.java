@@ -28,6 +28,21 @@ public class DatabaseManager extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void delete(String movieTitle){
+        SQLiteDatabase db = getWritableDatabase();
+        String sql = "delete from MovieTable where title = '"+movieTitle+"'";
+        db.execSQL(sql);
+        db.close();
+    }
+
+    public void updateByTitle(String title, String director){
+        SQLiteDatabase db = getWritableDatabase();
+        String sql = "update MovieTable set director = '"+director+"'";
+        sql += "where title = '"+title+"'";
+        db.execSQL(sql);
+        db.close();
+    }
+
     public ArrayList<String> getTitles(){
         ArrayList<String> list = new ArrayList<String>();
         SQLiteDatabase db = getWritableDatabase();

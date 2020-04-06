@@ -2,6 +2,7 @@ package com.example.mymovies;
 
 import android.os.Bundle;
 import android.content.Intent;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +26,14 @@ public class ViewActivity extends AppCompatActivity {
         titleView.setText(entry[0]);
         directorView.setText(entry[1]);
 
+    }
+
+    public void editPressed(View v){
+        Intent i = new Intent(this, AddActivity.class);
+        i.putExtra("ADD", false);
+        i.putExtra("TITLE", titleView.getText().toString());
+        i.putExtra("DIRECTOR", directorView.getText().toString());
+        startActivity(i);
     }
 
     public void onPause(){ super.onPause(); }

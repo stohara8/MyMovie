@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void additionPressed(View v){
         Intent i = new Intent(this, AddActivity.class);
+        i.putExtra("ADD", true);
         startActivity(i);
     }
 
